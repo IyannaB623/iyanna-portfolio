@@ -2,7 +2,7 @@ import { portfolioSections } from '../data/sections'
 
 export function PortfolioSections() {
   return (
-    <>
+    <div className="portfolio-deck">
       {portfolioSections.map((section) => (
         <section
           key={section.id}
@@ -10,10 +10,17 @@ export function PortfolioSections() {
           className="portfolio-section"
           aria-labelledby={`${section.id}-title`}
         >
-          <h2 id={`${section.id}-title`}>{section.title}</h2>
-          <p className="portfolio-section__placeholder">{section.description}</p>
+          <details className="portfolio-card" open>
+            <summary aria-controls={`${section.id}-content`}>
+              <h2 id={`${section.id}-title`}>{section.title}</h2>
+              <span className="portfolio-card__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p id={`${section.id}-content`} className="portfolio-section__placeholder">
+              {section.description}
+            </p>
+          </details>
         </section>
       ))}
-    </>
+    </div>
   )
 }

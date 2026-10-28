@@ -5,16 +5,37 @@
 Build a polished, career-focused personal portfolio for recruiters and hiring
 managers. Present Iyanna as strategic, technically capable, professional, and
 creative, with emphasis on data analytics, AI, development, and creative
-direction. The central brand statement is “WHERE DATA MEETS CREATIVITY.”
+direction. The central brand statement is “Where data meets creativity.”
 
 ## Design direction
 
-- Use a sophisticated black, off-white, and pink visual identity.
-- Keep layouts clear, confident, and professional; avoid visual clutter.
+- Use a warm stone/taupe canvas, near-black presentation cards, bone-white text,
+  deep espresso secondary surfaces, and burnt-orange/rust accents.
+- Keep an editorial, slightly brutalist pitch-deck feel: large sans-serif type,
+  generous negative space, rectangular card compositions, minimal rounding, and
+  sparse borders and shadows.
+- Do not use pink, berry, yellow, beige-on-beige, or cool gray. Maintain strong
+  contrast for all small text in both themes.
+- Use rust for active controls, chart/constellation marks, cursor details, and
+  restrained hover states. Avoid generic SaaS dashboards, bubbly cards, glossy
+  gradients, excessive badges, or visual clutter.
+- Make story, work, and process cards feel interactive while keeping personal
+  and professional facts accurate and user-approved.
 - Use regular CSS and reusable custom properties in `src/styles/tokens.css`.
+- Use original CSS or SVG details for visual storytelling; do not copy another
+  portfolio's layout, colors, illustrations, card arrangement, or interactions.
 - Do not add a framework or package when standard React, TypeScript, and CSS
   already solve the need.
 - Keep content data separate from reusable presentation where practical.
+- Later sections may include project case studies with measurable impact,
+  personal interests and creative details, a playful interactive contact
+  section, and local-time or other small personality-driven elements. Do not
+  invent facts or build these features until requested.
+- The future contact finale may be an interactive section conceptually inspired
+  by a draggable idea board. It may include a personal photo, career focus or
+  opportunities, email, résumé, local time, selected interests, GitHub and
+  LinkedIn, and one playful personal card. Do not build it or invent its content
+  until requested.
 
 ## Coding conventions
 

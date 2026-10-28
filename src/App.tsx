@@ -1,11 +1,12 @@
 import { Navigation } from './components/Navigation'
+import { ThemeProvider } from './components/ThemeProvider'
 import { HomeSection } from './sections/HomeSection'
 import { PortfolioSections } from './sections/PortfolioSections'
 import './App.css'
 
 function App() {
   return (
-    <>
+    <ThemeProvider>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
@@ -17,7 +18,7 @@ function App() {
       <footer className="site-footer">
         <p>Portfolio foundation · More details coming soon</p>
       </footer>
-    </>
+    </ThemeProvider>
   )
 }
 

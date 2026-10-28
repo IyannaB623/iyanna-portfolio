@@ -8,7 +8,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-ink);
-  background: var(--color-paper);
+  background: var(--color-background);
 }
 
 *,
@@ -26,6 +26,8 @@ body {
   min-width: 20rem;
   min-height: 100vh;
   margin: 0;
+  color: var(--color-ink);
+  background: var(--color-background);
 }
 
 button,
@@ -38,11 +40,11 @@ a {
 }
 
 a:focus-visible {
-  outline: 3px solid var(--color-pink);
+  outline: 3px solid var(--color-focus);
   outline-offset: 4px;
 }
 
 ::selection {
-  color: var(--color-ink);
-  background: var(--color-pink-soft);
+  color: var(--color-accent-contrast);
+  background: var(--color-accent);
 }

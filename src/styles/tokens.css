@@ -1,15 +1,38 @@
 :root {
-  /* Brand palette */
-  --color-ink: #171416;
-  --color-paper: #f8f6f3;
-  --color-pink: #d83f76;
-  --color-pink-soft: #f5dce5;
-  --color-muted: #6b6267;
-  --color-border: #ded8da;
+  color-scheme: light;
+
+  /* Stone canvas, ink cards, bone type, and restrained burnt-rust accents. */
+  --color-background: #a49587;
+  --color-surface: #171411;
+  --color-card: #171411;
+  --color-card-secondary: #2a201a;
+  --color-paper: #f3ece2;
+  --color-ink: #211a15;
+  --color-muted: #302821;
+  --color-card-text: #f3ece2;
+  --color-card-muted: #c5b9ac;
+  --color-card-accent: #ed8a62;
+  --color-card-accent-hover: #f3a17e;
+  --color-card-accent-soft: #4a2a1e;
+  --color-border: #5f5146;
+  --color-border-strong: #76675b;
+  --color-grid: #40352d;
+  --color-network: #c5b9ac;
+  --color-network-quiet: #6f5e51;
+  --color-accent: #a94022;
+  --color-accent-hover: #87341d;
+  --color-accent-soft: #45251b;
+  --color-accent-contrast: #fff8f0;
+  --color-focus: #8e3219;
+  --color-lens: #c66b47;
+  --color-lens-highlight: #f7eadd;
+  --color-lens-detail: #d2815f;
 
   /* Typography */
-  --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', sans-serif;
+  --font-body: 'Avenir Next', Avenir, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Avenir Next', Avenir, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-size-small: 0.875rem;
 
   /* Spacing scale */
@@ -22,6 +45,37 @@
   --space-12: 5rem;
   --space-16: 7rem;
 
-  --content-width: 76rem;
-  --breakpoint-nav: 48rem;
+  --page-gutter: clamp(1.15rem, 5vw, 5rem);
+  --content-width: 80rem;
+  --breakpoint-nav: 52rem;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-background: #241b16;
+  --color-surface: #171411;
+  --color-card: #171411;
+  --color-card-secondary: #30231c;
+  --color-paper: #f3ece2;
+  --color-ink: #f3ece2;
+  --color-muted: #d0c3b6;
+  --color-card-text: #f3ece2;
+  --color-card-muted: #c5b9ac;
+  --color-card-accent: #ed8a62;
+  --color-card-accent-hover: #f3a17e;
+  --color-card-accent-soft: #4a2a1e;
+  --color-border: #49382d;
+  --color-border-strong: #725643;
+  --color-grid: #403229;
+  --color-network: #c5b9ac;
+  --color-network-quiet: #725b49;
+  --color-accent: #e27a51;
+  --color-accent-hover: #f09169;
+  --color-accent-soft: #45271d;
+  --color-accent-contrast: #21150f;
+  --color-focus: #f09169;
+  --color-lens: #df8967;
+  --color-lens-highlight: #fff0df;
+  --color-lens-detail: #ef9b75;
 }
