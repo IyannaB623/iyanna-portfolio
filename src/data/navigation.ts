@@ -1,8 +1,6 @@
 export const navigationItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'Work', href: '#selected-work' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Experience', href: '#experience' },
+  { label: 'Dashboard', href: '#dashboard' },
+  { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '#contact-panel' },
 ]

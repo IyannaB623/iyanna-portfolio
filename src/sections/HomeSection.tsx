@@ -1,44 +1,61 @@
-import { DataConstellation } from '../components/DataConstellation'
 import { CursorDataLens } from '../components/CursorDataLens'
-import { ExpertiseMarquee } from '../components/ExpertiseMarquee'
-import { HeroAmbientBackground } from '../components/HeroAmbientBackground'
+import { DashboardNotes } from '../components/DashboardNotes'
+import { SkillExplorer } from '../components/SkillExplorer'
+import { WorkExplorer } from '../components/WorkExplorer'
 
 export function HomeSection() {
   return (
-    <>
-      <section id="home" className="hero-section" aria-labelledby="hero-name">
-        <HeroAmbientBackground />
+    <div id="dashboard" className="dashboard-grid">
+      <section id="identity" className="glass-card identity-card" aria-labelledby="identity-title">
+        <div className="identity-card__art" aria-hidden="true">
+          <span className="identity-shape identity-shape--garden" />
+          <span className="identity-shape identity-shape--blush" />
+          <span className="identity-card__ring identity-card__ring--one" />
+          <span className="identity-card__ring identity-card__ring--two" />
+          <span className="identity-card__seed" />
+        </div>
         <CursorDataLens />
-        <div className="hero-section__copy">
-          <p className="eyebrow">DATA ANALYST <i /> DEVELOPER <i /> CREATIVE</p>
-          <h1 id="hero-name">Iyanna Blackburn</h1>
-          <p className="hero-section__statement">
-            Where data meets <span>creativity.</span>
-          </p>
-          <p className="hero-section__note">
+        <div className="identity-card__content">
+          <p className="identity-card__eyebrow">DATA ANALYST <i /> DEVELOPER <i /> CREATIVE</p>
+          <h1 id="identity-title">Where data<br />meets creativity.</h1>
+          <p className="identity-card__supporting">
             I turn complex information into clear, compelling digital experiences
             through analytics, AI, and thoughtful design.
           </p>
-          <div className="hero-actions">
-            <a className="button button--primary" href="#selected-work">
-              View Selected Work <span aria-hidden="true">↗</span>
+          <div className="identity-card__actions">
+            <a className="dashboard-button dashboard-button--primary" href="#work">
+              Explore Work <span aria-hidden="true">↗</span>
             </a>
-            <a className="button button--secondary" href="#contact">
-              Let’s Connect <span aria-hidden="true">↗</span>
+            <a className="dashboard-button dashboard-button--quiet" href="#skills">
+              Quick Tour <span aria-hidden="true">↓</span>
             </a>
           </div>
-          <p className="hero-status">
-            <span className="hero-status__marker" aria-hidden="true" />
-            <span>Portfolio in progress</span>
-            <span className="hero-status__divider" aria-hidden="true" />
-            <span>Thoughtfully taking shape</span>
-          </p>
         </div>
-        <div className="hero-section__visual">
-          <DataConstellation />
+        <span className="identity-card__index" aria-hidden="true">IB · 01</span>
+      </section>
+
+      <section id="about" className="glass-card profile-card" aria-labelledby="profile-name">
+        <div className="profile-photo" aria-label="Reserved space for a future portrait">
+          <span className="profile-photo__frame" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="profile-photo__label">PORTRAIT<br />SPACE RESERVED</span>
+          <span className="profile-photo__monogram" aria-hidden="true">IB</span>
+        </div>
+        <div className="profile-card__content">
+          <p className="card-kicker">The person behind the work</p>
+          <h2 id="profile-name">Iyanna Blackburn</h2>
+          <p>Data analytics · AI · Development · Creative direction</p>
+          <a className="text-link" href="#skills">Explore focus <span aria-hidden="true">↗</span></a>
         </div>
       </section>
-      <ExpertiseMarquee />
-    </>
+
+      <WorkExplorer />
+      <SkillExplorer />
+      <DashboardNotes />
+    </div>
   )
 }

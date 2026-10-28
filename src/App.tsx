@@ -1,7 +1,6 @@
 import { Navigation } from './components/Navigation'
 import { ThemeProvider } from './components/ThemeProvider'
 import { HomeSection } from './sections/HomeSection'
-import { PortfolioSections } from './sections/PortfolioSections'
 import './App.css'
 
 function App() {
@@ -13,10 +12,9 @@ function App() {
       <Navigation />
       <main id="main-content" className="page-shell">
         <HomeSection />
-        <PortfolioSections />
       </main>
       <footer className="site-footer">
-        <p>Portfolio foundation · More details coming soon</p>
+        <p>Iyanna Blackburn <span aria-hidden="true">·</span> Where data meets creativity.</p>
       </footer>
     </ThemeProvider>
   )

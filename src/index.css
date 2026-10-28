@@ -23,11 +23,30 @@ html {
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   min-width: 20rem;
   min-height: 100vh;
   margin: 0;
   color: var(--color-ink);
   background: var(--color-background);
+  background-image: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-wash) 100%);
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  inset: -18%;
+  background:
+    radial-gradient(ellipse at 19% 23%, var(--color-atmosphere-garden), transparent 44%),
+    radial-gradient(ellipse at 78% 68%, var(--color-atmosphere-blush), transparent 39%);
+  content: '';
+  pointer-events: none;
+  animation: atmosphere-drift 42s ease-in-out infinite alternate;
+}
+
+@keyframes atmosphere-drift {
+  to { transform: translate3d(1.3%, -1%, 0) scale(1.035); }
 }
 
 button,
@@ -46,5 +65,9 @@ a:focus-visible {
 
 ::selection {
   color: var(--color-accent-contrast);
-  background: var(--color-accent);
+  background: var(--color-garden-light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
 }

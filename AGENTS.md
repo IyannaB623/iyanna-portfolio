@@ -9,18 +9,23 @@ direction. The central brand statement is “Where data meets creativity.”
 
 ## Design direction
 
-- Use a warm stone/taupe canvas, near-black presentation cards, bone-white text,
-  deep espresso secondary surfaces, and burnt-orange/rust accents.
-- Keep an editorial, slightly brutalist pitch-deck feel: large sans-serif type,
-  generous negative space, rectangular card compositions, minimal rounding, and
-  sparse borders and shadows.
-- Do not use pink, berry, yellow, beige-on-beige, or cool gray. Maintain strong
-  contrast for all small text in both themes.
-- Use rust for active controls, chart/constellation marks, cursor details, and
-  restrained hover states. Avoid generic SaaS dashboards, bubbly cards, glossy
-  gradients, excessive badges, or visual clutter.
-- Make story, work, and process cards feel interactive while keeping personal
-  and professional facts accurate and user-approved.
+- Follow the approved “Garden Glass Dashboard” direction: soft garden greens
+  (sage, pistachio, fresh leaf, and subtle moss), light blush pink, warm white,
+  and deep botanical charcoal.
+- Do not use aqua, cyan, blue-mint, neon green, or berry pink. Use warm
+  yellow/garden undertones in green-to-blush gradients.
+- Use translucent white cards, backdrop blur, thin semi-transparent white
+  borders, soft green-undertone shadows, and 24–28px corner radii. Always
+  provide an opaque card fallback for browsers without backdrop-filter.
+- Maintain accessible contrast. Reserve blur and transparency for major glass
+  surfaces rather than applying it indiscriminately to all elements.
+- Keep organic background movement slow and elegant, and honor reduced-motion
+  preferences. Cards should be interactive without hiding essential information
+  behind hover.
+- Avoid excessive glow, generic SaaS clutter, arbitrary skill percentages, and
+  invented projects, results, biography, or professional claims.
+- Use reusable custom properties in `src/styles/tokens.css`; keep content data
+  separate from reusable presentation where practical.
 - Use regular CSS and reusable custom properties in `src/styles/tokens.css`.
 - Use original CSS or SVG details for visual storytelling; do not copy another
   portfolio's layout, colors, illustrations, card arrangement, or interactions.

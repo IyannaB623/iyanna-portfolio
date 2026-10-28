@@ -21,7 +21,7 @@ export function Navigation() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <a className="site-brand" href="#home" aria-label="Iyanna Blackburn, home">
+        <a className="site-brand" href="#dashboard" aria-label="Iyanna Blackburn, dashboard">
           <span className="site-brand__monogram" aria-hidden="true">
             I<span>B</span><i />
           </span>
@@ -38,12 +38,12 @@ export function Navigation() {
               {navigationItems.map((item) => (
                 <li key={item.href}>
                   <a
-                    className={item.href === '#contact' ? 'site-nav__contact' : undefined}
+                    className={item.label === 'Contact' ? 'site-nav__contact' : undefined}
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
-                    {item.href === '#contact' && <span aria-hidden="true">↗</span>}
+                    {item.label === 'Contact' && <span aria-hidden="true">↗</span>}
                   </a>
                 </li>
               ))}

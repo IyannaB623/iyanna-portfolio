@@ -1,41 +1,50 @@
 :root {
   color-scheme: light;
 
-  /* Stone canvas, ink cards, bone type, and restrained burnt-rust accents. */
-  --color-background: #a49587;
-  --color-surface: #171411;
-  --color-card: #171411;
-  --color-card-secondary: #2a201a;
-  --color-paper: #f3ece2;
-  --color-ink: #211a15;
-  --color-muted: #302821;
-  --color-card-text: #f3ece2;
-  --color-card-muted: #c5b9ac;
-  --color-card-accent: #ed8a62;
-  --color-card-accent-hover: #f3a17e;
-  --color-card-accent-soft: #4a2a1e;
-  --color-border: #5f5146;
-  --color-border-strong: #76675b;
-  --color-grid: #40352d;
-  --color-network: #c5b9ac;
-  --color-network-quiet: #6f5e51;
-  --color-accent: #a94022;
-  --color-accent-hover: #87341d;
-  --color-accent-soft: #45251b;
-  --color-accent-contrast: #fff8f0;
-  --color-focus: #8e3219;
-  --color-lens: #c66b47;
-  --color-lens-highlight: #f7eadd;
-  --color-lens-detail: #d2815f;
+  --color-background: #e7ecdf;
+  --color-background-wash: #f0eee6;
+  --color-atmosphere-garden: rgb(196 216 164 / 54%);
+  --color-atmosphere-blush: rgb(245 191 210 / 36%);
+  --color-surface: #fbf8f4;
+  --color-surface-glass: rgb(251 248 244 / 78%);
+  --color-ink: #17201d;
+  --color-muted: #405047;
+  --color-garden-light: #c4d8a4;
+  --color-garden: #718a4f;
+  --color-garden-deep: #4a6234;
+  --color-garden-button-text: #17201d;
+  --color-blush: #f5bfd2;
+  --color-botanical-charcoal: #17201d;
+  --color-card-text: #f7f5ed;
+  --color-card-muted: #d3ded0;
+  --color-card-kicker: #40582b;
+  --color-link: #40582b;
+  --color-detail-ink: #17201d;
+  --color-detail-muted: #405047;
+  --color-detail-accent: #40582b;
+  --color-accent: #526d39;
+  --color-accent-hover: #40582b;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft: #dce8ca;
+  --color-selected-bg: #526d39;
+  --color-selected-text: #ffffff;
+  --color-border: rgb(255 255 255 / 68%);
+  --color-border-strong: rgb(255 255 255 / 88%);
+  --color-focus: #455f32;
+  --color-shadow: rgb(57 78 46 / 14%);
+  --color-lens: #829762;
+  --color-lens-highlight: #fbf8f4;
+  --color-lens-detail: #526d39;
+  --color-network: #708752;
+  --color-network-quiet: #a4b18b;
+  --color-grid: #cbd6bd;
 
-  /* Typography */
   --font-body: 'Avenir Next', Avenir, ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-display: 'Avenir Next', Avenir, ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-size-small: 0.875rem;
 
-  /* Spacing scale */
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
@@ -45,37 +54,45 @@
   --space-12: 5rem;
   --space-16: 7rem;
 
-  --page-gutter: clamp(1.15rem, 5vw, 5rem);
-  --content-width: 80rem;
+  --page-gutter: clamp(1rem, 4vw, 3.5rem);
+  --content-width: 82rem;
   --breakpoint-nav: 52rem;
+  --glass-radius: 1.6rem;
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --color-background: #241b16;
-  --color-surface: #171411;
-  --color-card: #171411;
-  --color-card-secondary: #30231c;
-  --color-paper: #f3ece2;
-  --color-ink: #f3ece2;
-  --color-muted: #d0c3b6;
-  --color-card-text: #f3ece2;
-  --color-card-muted: #c5b9ac;
-  --color-card-accent: #ed8a62;
-  --color-card-accent-hover: #f3a17e;
-  --color-card-accent-soft: #4a2a1e;
-  --color-border: #49382d;
-  --color-border-strong: #725643;
-  --color-grid: #403229;
-  --color-network: #c5b9ac;
-  --color-network-quiet: #725b49;
-  --color-accent: #e27a51;
-  --color-accent-hover: #f09169;
-  --color-accent-soft: #45271d;
-  --color-accent-contrast: #21150f;
-  --color-focus: #f09169;
-  --color-lens: #df8967;
-  --color-lens-highlight: #fff0df;
-  --color-lens-detail: #ef9b75;
+  --color-background: #17201d;
+  --color-background-wash: #202c24;
+  --color-atmosphere-garden: rgb(113 138 79 / 28%);
+  --color-atmosphere-blush: rgb(245 191 210 / 12%);
+  --color-surface: #202a25;
+  --color-surface-glass: rgb(32 42 37 / 86%);
+  --color-ink: #f4f3e9;
+  --color-muted: #c7d2c4;
+  --color-card-text: #f7f5ed;
+  --color-card-muted: #d3ded0;
+  --color-card-kicker: #c4d8a4;
+  --color-link: #c4d8a4;
+  --color-detail-ink: #17201d;
+  --color-detail-muted: #405047;
+  --color-detail-accent: #40582b;
+  --color-accent: #c4d8a4;
+  --color-accent-hover: #d5e5bb;
+  --color-accent-contrast: #17201d;
+  --color-garden-button-text: #17201d;
+  --color-accent-soft: #35452f;
+  --color-selected-bg: #c4d8a4;
+  --color-selected-text: #17201d;
+  --color-border: rgb(255 255 255 / 12%);
+  --color-border-strong: rgb(255 255 255 / 22%);
+  --color-focus: #c4d8a4;
+  --color-shadow: rgb(0 0 0 / 24%);
+  --color-lens: #c4d8a4;
+  --color-lens-highlight: #f5bfd2;
+  --color-lens-detail: #dce8ca;
+  --color-network: #9eb889;
+  --color-network-quiet: #526b50;
+  --color-grid: #314239;
 }
