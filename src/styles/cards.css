@@ -1,0 +1,54 @@
+.glass-card {
+  min-width: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--glass-radius);
+  background: var(--color-surface);
+  box-shadow: 0 12px 32px var(--color-shadow);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass-card {
+    background: var(--color-surface-glass);
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur));
+  }
+}
+
+.glass-card:hover { transform: translateY(-2px); box-shadow: 0 16px 38px var(--color-shadow); }
+
+/* Dark hero variant: an intentional opaque, higher-contrast exception. It keeps
+   the base shadow on hover so the hero stays still under the cursor. */
+.glass-card--hero { --color-focus: var(--color-garden-light); color: var(--color-card-text); background: var(--color-botanical-charcoal); }
+.glass-card--hero:hover { transform: none; box-shadow: 0 12px 32px var(--color-shadow); }
+
+.dashboard-card__header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+.dashboard-card__header .card-kicker { margin-bottom: 0.4rem; }
+.card-kicker { margin: 0 0 0.5rem; color: var(--color-card-kicker); font-size: 0.67rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; }
+.profile-card h2, .dashboard-card__header h2 { margin: 0; color: var(--color-ink); font-size: clamp(1.3rem, 2vw, 1.7rem); font-weight: 750; letter-spacing: -0.05em; }
+.card-index { padding: 0.5rem 0.7rem; border: 1px solid var(--color-border-strong); border-radius: 999px; color: var(--color-garden-deep); font-size: 0.68rem; font-weight: 750; letter-spacing: 0.07em; }
+
+.text-link { display: inline-flex; gap: 0.5rem; margin-top: 1rem; color: var(--color-link); font-size: 0.86rem; font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
+.text-link:hover { color: var(--color-accent-hover); }
+
+.dashboard-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: 3.2rem;
+  padding: 0 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.dashboard-button:hover { transform: translateY(-2px); }
+.dashboard-button span { font-size: 1.05rem; }
+.dashboard-button--primary { color: var(--color-garden-button-text); background: var(--color-garden-light); }
+.dashboard-button--primary:hover { background: #d3e2bd; }
+.dashboard-button--quiet { border-color: rgb(255 255 255 / 28%); color: var(--color-card-text); background: rgb(255 255 255 / 5%); }
+.dashboard-button--quiet:hover { border-color: var(--color-garden-light); background: rgb(255 255 255 / 10%); }

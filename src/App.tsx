@@ -2,7 +2,10 @@ import { CursorDataLens } from './components/CursorDataLens'
 import { Navigation } from './components/Navigation'
 import { ThemeProvider } from './components/ThemeProvider'
 import { HomeSection } from './sections/HomeSection'
-import './App.css'
+import './styles/cards.css'
+import './styles/dashboard.css'
+import './styles/navigation.css'
+import './styles/interactions.css'
 
 function App() {
   return (

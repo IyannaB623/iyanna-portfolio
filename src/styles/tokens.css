@@ -103,3 +103,7 @@
   --color-network-quiet: #526b50;
   --color-grid: #314239;
 }
+
+@media (max-width: 40rem) {
+  :root { --page-gutter: 1rem; --glass-radius: 1.35rem; }
+}

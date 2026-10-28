@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { DashboardCard } from './DashboardCard'
 
 const notes = [
   {
@@ -37,7 +38,7 @@ export function DashboardNotes() {
         const panelId = `${note.id}-detail`
 
         return (
-          <article id={note.id} className={`glass-card ${note.className}`} key={note.id}>
+          <DashboardCard as="article" id={note.id} className={note.className} key={note.id}>
             <h2 className="note-card__heading">
               <button
                 className="note-card__trigger"
@@ -57,7 +58,7 @@ export function DashboardNotes() {
             <div id={panelId} className="note-card__panel" hidden={!isOpen}>
               <p className="note-card__detail">{note.detail}</p>
             </div>
-          </article>
+          </DashboardCard>
         )
       })}
     </div>

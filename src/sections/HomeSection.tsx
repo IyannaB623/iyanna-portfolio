@@ -1,3 +1,4 @@
+import { DashboardCard } from '../components/DashboardCard'
 import { DashboardNotes } from '../components/DashboardNotes'
 import { SkillExplorer } from '../components/SkillExplorer'
 import { WorkExplorer } from '../components/WorkExplorer'
@@ -5,7 +6,7 @@ import { WorkExplorer } from '../components/WorkExplorer'
 export function HomeSection() {
   return (
     <div id="dashboard" className="dashboard-grid">
-      <section id="identity" className="glass-card identity-card" aria-labelledby="identity-title">
+      <DashboardCard id="identity" className="identity-card" variant="hero" labelledBy="identity-title">
         <div className="identity-card__art" aria-hidden="true">
           <span className="identity-shape identity-shape--garden" />
           <span className="identity-shape identity-shape--blush" />
@@ -30,9 +31,9 @@ export function HomeSection() {
           </div>
         </div>
         <span className="identity-card__index" aria-hidden="true">IB · 01</span>
-      </section>
+      </DashboardCard>
 
-      <section id="about" className="glass-card profile-card" aria-labelledby="profile-name">
+      <DashboardCard id="about" className="profile-card" labelledBy="profile-name">
         <div className="profile-photo">
           <span className="profile-photo__frame" aria-hidden="true">
             <span />
@@ -49,7 +50,7 @@ export function HomeSection() {
           <p>Data analytics · AI · Development · Creative direction</p>
           <a className="text-link" href="#skills">Explore focus <span aria-hidden="true">↗</span></a>
         </div>
-      </section>
+      </DashboardCard>
 
       <WorkExplorer />
       <SkillExplorer />

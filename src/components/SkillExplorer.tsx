@@ -1,19 +1,20 @@
 import { useState } from 'react'
 import { skillAreas } from '../data/dashboard'
+import { DashboardCard } from './DashboardCard'
 
 export function SkillExplorer() {
   const [selectedSkillId, setSelectedSkillId] = useState<(typeof skillAreas)[number]['id']>(skillAreas[0].id)
   const selectedSkill = skillAreas.find((skill) => skill.id === selectedSkillId) ?? skillAreas[0]
 
   return (
-    <section id="skills" className="glass-card skill-card" aria-labelledby="skills-title">
-      <header className="dashboard-card__header">
-        <div>
-          <p className="card-kicker">A working toolkit</p>
-          <h2 id="skills-title">Skill explorer</h2>
-        </div>
-        <span className="skill-card__sprout" aria-hidden="true">✳</span>
-      </header>
+    <DashboardCard
+      id="skills"
+      className="skill-card"
+      kicker="A working toolkit"
+      title="Skill explorer"
+      titleId="skills-title"
+      headerAside={<span className="skill-card__sprout" aria-hidden="true">✳</span>}
+    >
       <div className="skill-explorer">
         <div className="skill-selector" role="group" aria-label="Explore skills">
           {skillAreas.map((skill) => (
@@ -35,6 +36,6 @@ export function SkillExplorer() {
           <p>{selectedSkill.capabilities}</p>
         </div>
       </div>
-    </section>
+    </DashboardCard>
   )
 }

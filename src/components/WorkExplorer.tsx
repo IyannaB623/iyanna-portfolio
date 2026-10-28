@@ -1,19 +1,20 @@
 import { useState } from 'react'
 import { projects } from '../data/dashboard'
+import { DashboardCard } from './DashboardCard'
 
 export function WorkExplorer() {
   const [selectedProjectId, setSelectedProjectId] = useState<(typeof projects)[number]['id']>(projects[0].id)
   const selectedProject = projects.find((project) => project.id === selectedProjectId) ?? projects[0]
 
   return (
-    <section id="work" className="glass-card work-card" aria-labelledby="work-title">
-      <header className="dashboard-card__header">
-        <div>
-          <p className="card-kicker">A few directions</p>
-          <h2 id="work-title">Selected work</h2>
-        </div>
-        <span className="card-index" aria-hidden="true">01 / 03</span>
-      </header>
+    <DashboardCard
+      id="work"
+      className="work-card"
+      kicker="A few directions"
+      title="Selected work"
+      titleId="work-title"
+      index="01 / 03"
+    >
       <div className="work-explorer">
         <div className="work-selector" role="group" aria-label="Select a project">
           {projects.map((project, index) => (
@@ -45,6 +46,6 @@ export function WorkExplorer() {
           <span className="work-detail__note">Details to come</span>
         </article>
       </div>
-    </section>
+    </DashboardCard>
   )
 }
