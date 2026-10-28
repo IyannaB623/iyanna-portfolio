@@ -35,7 +35,7 @@ export function HomeSection() {
       </section>
 
       <section id="about" className="glass-card profile-card" aria-labelledby="profile-name">
-        <div className="profile-photo" aria-label="Reserved space for a future portrait">
+        <div className="profile-photo">
           <span className="profile-photo__frame" aria-hidden="true">
             <span />
             <span />

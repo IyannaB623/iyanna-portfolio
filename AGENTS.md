@@ -24,8 +24,6 @@ direction. The central brand statement is “Where data meets creativity.”
   behind hover.
 - Avoid excessive glow, generic SaaS clutter, arbitrary skill percentages, and
   invented projects, results, biography, or professional claims.
-- Use reusable custom properties in `src/styles/tokens.css`; keep content data
-  separate from reusable presentation where practical.
 - Use regular CSS and reusable custom properties in `src/styles/tokens.css`.
 - Use original CSS or SVG details for visual storytelling; do not copy another
   portfolio's layout, colors, illustrations, card arrangement, or interactions.

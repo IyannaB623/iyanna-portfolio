@@ -10,8 +10,8 @@ export const projects = [
     description: 'Project details, approach, and outcomes will be added here.',
   },
   {
-    id: 'creative-systems',
-    label: 'Creative Systems',
+    id: 'creative-practice',
+    label: 'Creative Practice',
     description: 'Project details, approach, and outcomes will be added here.',
   },
 ] as const

@@ -32,9 +32,10 @@
   --color-border-strong: rgb(255 255 255 / 88%);
   --color-focus: #455f32;
   --color-shadow: rgb(57 78 46 / 14%);
-  --color-lens: #829762;
-  --color-lens-highlight: #fbf8f4;
-  --color-lens-detail: #526d39;
+  /* The lens sits on the charcoal hero in both themes, so it has one set. */
+  --color-lens: #c4d8a4;
+  --color-lens-highlight: #f5bfd2;
+  --color-lens-detail: #dce8ca;
   --color-network: #708752;
   --color-network-quiet: #a4b18b;
   --color-grid: #cbd6bd;
@@ -89,9 +90,6 @@
   --color-border-strong: rgb(255 255 255 / 22%);
   --color-focus: #c4d8a4;
   --color-shadow: rgb(0 0 0 / 24%);
-  --color-lens: #c4d8a4;
-  --color-lens-highlight: #f5bfd2;
-  --color-lens-detail: #dce8ca;
   --color-network: #9eb889;
   --color-network-quiet: #526b50;
   --color-grid: #314239;

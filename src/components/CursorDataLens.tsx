@@ -26,79 +26,61 @@ export function CursorDataLens() {
     if (!isEnabled || !lens || !hero) return
 
     let frameId = 0
-    let isMoving = false
-    let hasPosition = false
-    let currentX = -1000
-    let currentY = -1000
-    let targetX = -1000
-    let targetY = -1000
+    let currentX = 0
+    let currentY = 0
+    let targetX = 0
+    let targetY = 0
 
-    const animatePosition = () => {
-      currentX += (targetX - currentX) * 0.13
-      currentY += (targetY - currentY) * 0.13
-
+    const applyPosition = () => {
       lens.style.setProperty('--lens-x', `${currentX}px`)
       lens.style.setProperty('--lens-y', `${currentY}px`)
-
-      if (Math.abs(targetX - currentX) > 0.5 || Math.abs(targetY - currentY) > 0.5) {
-        frameId = window.requestAnimationFrame(animatePosition)
-      } else {
-        currentX = targetX
-        currentY = targetY
-        lens.style.setProperty('--lens-x', `${currentX}px`)
-        lens.style.setProperty('--lens-y', `${currentY}px`)
-        frameId = 0
-      }
     }
 
-    const hideLens = () => {
-      lens.dataset.visible = 'false'
+    const animatePosition = () => {
+      currentX += (targetX - currentX) * 0.14
+      currentY += (targetY - currentY) * 0.14
+
+      if (Math.abs(targetX - currentX) <= 0.5 && Math.abs(targetY - currentY) <= 0.5) {
+        currentX = targetX
+        currentY = targetY
+        frameId = 0
+      } else {
+        frameId = window.requestAnimationFrame(animatePosition)
+      }
+
+      applyPosition()
     }
 
     const handlePointerMove = (event: PointerEvent) => {
+      if (event.pointerType === 'touch') return
+
       const bounds = hero.getBoundingClientRect()
-      const isInsideHero = event.clientX >= bounds.left
-        && event.clientX <= bounds.right
-        && event.clientY >= bounds.top
-        && event.clientY <= bounds.bottom
-
-      if (!isInsideHero) {
-        hideLens()
-        return
-      }
-
       targetX = event.clientX - bounds.left
       targetY = event.clientY - bounds.top
 
-      if (!hasPosition) {
+      if (lens.dataset.visible !== 'true') {
+        // Appear at the pointer instead of gliding in from the last exit point.
         currentX = targetX
         currentY = targetY
-        lens.style.setProperty('--lens-x', `${currentX}px`)
-        lens.style.setProperty('--lens-y', `${currentY}px`)
-        hasPosition = true
+        applyPosition()
+        lens.dataset.visible = 'true'
       }
 
-      lens.dataset.visible = 'true'
-
-      if (!frameId) {
-        isMoving = true
-        frameId = window.requestAnimationFrame(animatePosition)
-      }
+      if (!frameId) frameId = window.requestAnimationFrame(animatePosition)
     }
 
     const handlePointerLeave = () => {
-      isMoving = false
-      hideLens()
+      lens.dataset.visible = 'false'
     }
 
-    window.addEventListener('pointermove', handlePointerMove, { passive: true })
-    document.documentElement.addEventListener('pointerleave', handlePointerLeave)
+    hero.addEventListener('pointermove', handlePointerMove, { passive: true })
+    hero.addEventListener('pointerleave', handlePointerLeave)
 
     return () => {
-      window.removeEventListener('pointermove', handlePointerMove)
-      document.documentElement.removeEventListener('pointerleave', handlePointerLeave)
+      hero.removeEventListener('pointermove', handlePointerMove)
+      hero.removeEventListener('pointerleave', handlePointerLeave)
       if (frameId) window.cancelAnimationFrame(frameId)
-      if (isMoving) hideLens()
+      lens.dataset.visible = 'false'
     }
   }, [isEnabled])
 

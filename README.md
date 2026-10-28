@@ -1,8 +1,10 @@
 # Iyanna's Portfolio
 
-A responsive personal portfolio foundation focused on data analytics, AI,
-development, and creative direction. The visual identity is built around black,
-off-white, and pink, with the brand statement “WHERE DATA MEETS CREATIVITY.”
+A responsive personal portfolio focused on data analytics, AI, development, and
+creative direction, built around the brand statement “Where data meets
+creativity.” The visual direction is a “Garden Glass Dashboard”: sage and
+pistachio greens, light blush, warm white, and botanical charcoal, with
+translucent glass cards and light and dark (“night garden”) themes.
 
 ## Requirements
 
@@ -47,8 +49,8 @@ npm run lint
 - `src/components/` — reusable interface components
 - `src/sections/` — page sections
 - `src/data/` — navigation and section content
-- `src/assets/` — images and other imported assets
-- `src/styles/` — design tokens and shared styling
+- `src/styles/` — design tokens (`tokens.css`) and shared styling
+- `public/` — static files served as-is, such as the favicon
 
-The current page is a foundation with placeholder content; replace it with
-approved portfolio details as they become available.
+Some project and section copy is still draft or placeholder text; replace it
+with approved portfolio details as they become available.
