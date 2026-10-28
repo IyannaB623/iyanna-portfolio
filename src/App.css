@@ -169,13 +169,15 @@
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-@supports (backdrop-filter: blur(1px)) {
-  .glass-card,
-  .site-header__inner {
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass-card {
     background: var(--color-surface-glass);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur));
   }
+
+  /* The sticky header scrolls over the charcoal hero, so it keeps denser glass. */
+  .site-header__inner { background: var(--color-surface-glass-strong); }
 }
 
 .glass-card:hover { transform: translateY(-2px); box-shadow: 0 16px 38px var(--color-shadow); }
@@ -194,7 +196,7 @@
 }
 
 .identity-card { --color-focus: var(--color-garden-light); }
-.identity-card__content { position: relative; z-index: 3; width: min(100%, 40rem); }
+.identity-card__content { position: relative; z-index: 2; width: min(100%, 40rem); }
 .identity-card::after { position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, var(--color-botanical-charcoal) 0%, var(--color-botanical-charcoal) 42%, rgb(23 32 29 / 74%) 62%, transparent 100%); content: ''; pointer-events: none; }
 .identity-card__eyebrow { display: flex; align-items: center; flex-wrap: wrap; gap: 0.58rem; margin: 0 0 var(--space-5); color: var(--color-card-muted); font-size: 0.72rem; font-weight: 750; letter-spacing: 0.14em; }
 .identity-card__eyebrow i { width: 0.28rem; height: 0.28rem; border-radius: 50%; background: var(--color-garden-light); }
@@ -232,16 +234,18 @@
 .identity-card__ring { position: absolute; right: 9%; top: 15%; width: min(35vw, 24rem); aspect-ratio: 1; border: 1px solid rgb(251 248 244 / 32%); border-radius: 50%; }
 .identity-card__ring--two { right: 13%; top: 20%; width: min(27vw, 18rem); border-style: dashed; opacity: 0.6; }
 .identity-card__seed { position: absolute; top: 22%; right: 27%; width: 0.65rem; height: 0.65rem; border-radius: 50%; background: var(--color-surface); box-shadow: 0 0 0 0.45rem rgb(251 248 244 / 15%); }
-.identity-card__index { position: absolute; z-index: 3; right: 1.5rem; bottom: 1.25rem; color: var(--color-card-muted); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; }
+.identity-card__index { position: absolute; z-index: 2; right: 1.5rem; bottom: 1.25rem; color: var(--color-card-muted); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; }
 
-/* Cursor lens: sits above the hero overlay and below its content. Position comes
-   from --lens-x/--lens-y, set by CursorDataLens on each animation frame. */
+/* Cursor lens: a fixed, viewport-sized layer in the body's stacking context. At
+   z-index -1 it paints above the body::before atmosphere (earlier in the tree)
+   and below all in-flow content, so it shows through the glass cards. Position
+   comes from --lens-x/--lens-y, set by CursorDataLens on each animation frame. */
 .cursor-data-lens {
   --lens-size: 13rem;
   --lens-x: -100vmax;
   --lens-y: -100vmax;
-  position: absolute;
-  z-index: 2;
+  position: fixed;
+  z-index: -1;
   inset: 0;
   overflow: hidden;
   opacity: 0;
@@ -260,9 +264,9 @@
   border-radius: 50%;
   background: radial-gradient(
     circle closest-side,
-    color-mix(in srgb, var(--color-lens-highlight) 24%, transparent) 0%,
-    color-mix(in srgb, var(--color-lens-highlight) 14%, transparent) 30%,
-    color-mix(in srgb, var(--color-lens) 13%, transparent) 58%,
+    color-mix(in srgb, var(--color-lens-highlight) var(--lens-strength-core), transparent) 0%,
+    color-mix(in srgb, var(--color-lens-highlight) var(--lens-strength-mid), transparent) 30%,
+    color-mix(in srgb, var(--color-lens) var(--lens-strength-edge), transparent) 58%,
     transparent 100%
   );
   transform: translate3d(calc(var(--lens-x) - 50%), calc(var(--lens-y) - 50%), 0);
@@ -341,18 +345,19 @@
 .skill-detail h3 { margin: 0; color: var(--color-ink); font-size: 1.2rem; font-weight: 800; letter-spacing: -0.04em; }
 .skill-detail p:last-child { margin: 0.5rem 0 0; color: var(--color-muted); font-size: 0.88rem; line-height: 1.6; }
 
-.notes-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.4rem); }
+/* align-items: start keeps closed cards from stretching to an open card's height. */
+.notes-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: clamp(1rem, 2vw, 1.4rem); }
 .note-card { min-width: 0; padding: 1.25rem; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
 .note-card:hover { transform: translateY(-3px); box-shadow: 0 18px 36px var(--color-shadow); }
-.note-card summary { display: flex; align-items: flex-start; gap: 0.85rem; cursor: pointer; list-style: none; }
-.note-card summary::-webkit-details-marker { display: none; }
-.note-card summary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 5px; border-radius: 0.5rem; }
+.note-card__heading { margin: 0; font: inherit; }
+.note-card__trigger { display: flex; align-items: flex-start; gap: 0.85rem; width: 100%; padding: 0; border: 0; color: inherit; background: none; cursor: pointer; text-align: left; }
+.note-card__trigger:focus-visible { outline-width: 2px; outline-offset: 5px; border-radius: 0.5rem; }
 .note-card__number { display: grid; flex: 0 0 auto; width: 2.15rem; height: 2.15rem; place-items: center; border-radius: 50%; color: var(--color-garden-deep); background: var(--color-accent-soft); font-size: 0.67rem; font-weight: 800; }
 .note-card__body { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 0.3rem; }
 .note-card__title { color: var(--color-ink); font-size: 1rem; font-weight: 800; letter-spacing: -0.025em; }
 .note-card__preview { color: var(--color-muted); font-size: 0.8rem; line-height: 1.45; }
 .note-card__toggle { color: var(--color-garden-deep); font-size: 1.3rem; line-height: 1; transition: transform 180ms ease; }
-.note-card[open] .note-card__toggle { transform: rotate(45deg); }
+.note-card__trigger[aria-expanded='true'] .note-card__toggle { transform: rotate(45deg); }
 .note-card__detail { margin: 1rem 0 0 3rem; padding-top: 0.85rem; border-top: 1px solid var(--color-border); color: var(--color-muted); font-size: 0.82rem; line-height: 1.6; }
 
 .site-footer { width: min(100% - var(--page-gutter) * 2, var(--content-width)); margin: 0 auto; padding-block: var(--space-5); color: var(--color-muted); font-size: var(--font-size-small); }

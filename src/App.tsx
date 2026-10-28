@@ -1,3 +1,4 @@
+import { CursorDataLens } from './components/CursorDataLens'
 import { Navigation } from './components/Navigation'
 import { ThemeProvider } from './components/ThemeProvider'
 import { HomeSection } from './sections/HomeSection'
@@ -9,6 +10,7 @@ function App() {
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
+      <CursorDataLens />
       <Navigation />
       <main id="main-content" className="page-shell">
         <HomeSection />

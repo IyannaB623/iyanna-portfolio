@@ -1,4 +1,3 @@
-import { CursorDataLens } from '../components/CursorDataLens'
 import { DashboardNotes } from '../components/DashboardNotes'
 import { SkillExplorer } from '../components/SkillExplorer'
 import { WorkExplorer } from '../components/WorkExplorer'
@@ -14,7 +13,6 @@ export function HomeSection() {
           <span className="identity-card__ring identity-card__ring--two" />
           <span className="identity-card__seed" />
         </div>
-        <CursorDataLens />
         <div className="identity-card__content">
           <p className="identity-card__eyebrow">DATA ANALYST <i /> DEVELOPER <i /> CREATIVE</p>
           <h1 id="identity-title">Where data<br />meets creativity.</h1>

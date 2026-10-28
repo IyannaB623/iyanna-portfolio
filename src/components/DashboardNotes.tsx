@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const notes = [
   {
     id: 'now-building',
@@ -26,21 +28,38 @@ const notes = [
 ]
 
 export function DashboardNotes() {
+  const [openNoteId, setOpenNoteId] = useState<string | null>(null)
+
   return (
     <div className="notes-grid">
-      {notes.map((note) => (
-        <details id={note.id} className={`glass-card ${note.className}`} key={note.id}>
-          <summary>
-            <span className="note-card__number">{note.number}</span>
-            <span className="note-card__body">
-              <span className="note-card__title">{note.title}</span>
-              <span className="note-card__preview">{note.preview}</span>
-            </span>
-            <span className="note-card__toggle" aria-hidden="true">+</span>
-          </summary>
-          <p className="note-card__detail">{note.detail}</p>
-        </details>
-      ))}
+      {notes.map((note) => {
+        const isOpen = openNoteId === note.id
+        const panelId = `${note.id}-detail`
+
+        return (
+          <article id={note.id} className={`glass-card ${note.className}`} key={note.id}>
+            <h2 className="note-card__heading">
+              <button
+                className="note-card__trigger"
+                type="button"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                onClick={() => setOpenNoteId(isOpen ? null : note.id)}
+              >
+                <span className="note-card__number">{note.number}</span>
+                <span className="note-card__body">
+                  <span className="note-card__title">{note.title}</span>
+                  <span className="note-card__preview">{note.preview}</span>
+                </span>
+                <span className="note-card__toggle" aria-hidden="true">+</span>
+              </button>
+            </h2>
+            <div id={panelId} className="note-card__panel" hidden={!isOpen}>
+              <p className="note-card__detail">{note.detail}</p>
+            </div>
+          </article>
+        )
+      })}
     </div>
   )
 }

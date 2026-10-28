@@ -22,8 +22,7 @@ export function CursorDataLens() {
 
   useEffect(() => {
     const lens = lensRef.current
-    const hero = lens?.parentElement
-    if (!isEnabled || !lens || !hero) return
+    if (!isEnabled || !lens) return
 
     let frameId = 0
     let currentX = 0
@@ -54,9 +53,8 @@ export function CursorDataLens() {
     const handlePointerMove = (event: PointerEvent) => {
       if (event.pointerType === 'touch') return
 
-      const bounds = hero.getBoundingClientRect()
-      targetX = event.clientX - bounds.left
-      targetY = event.clientY - bounds.top
+      targetX = event.clientX
+      targetY = event.clientY
 
       if (lens.dataset.visible !== 'true') {
         // Appear at the pointer instead of gliding in from the last exit point.
@@ -69,16 +67,23 @@ export function CursorDataLens() {
       if (!frameId) frameId = window.requestAnimationFrame(animatePosition)
     }
 
-    const handlePointerLeave = () => {
+    const hideLens = () => {
       lens.dataset.visible = 'false'
     }
 
-    hero.addEventListener('pointermove', handlePointerMove, { passive: true })
-    hero.addEventListener('pointerleave', handlePointerLeave)
+    // A mouseout with no relatedTarget means the pointer left the document.
+    const handleMouseOut = (event: MouseEvent) => {
+      if (!event.relatedTarget) hideLens()
+    }
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true })
+    document.addEventListener('mouseout', handleMouseOut)
+    window.addEventListener('blur', hideLens)
 
     return () => {
-      hero.removeEventListener('pointermove', handlePointerMove)
-      hero.removeEventListener('pointerleave', handlePointerLeave)
+      window.removeEventListener('pointermove', handlePointerMove)
+      document.removeEventListener('mouseout', handleMouseOut)
+      window.removeEventListener('blur', hideLens)
       if (frameId) window.cancelAnimationFrame(frameId)
       lens.dataset.visible = 'false'
     }
