@@ -1,7 +1,9 @@
+import profilePhoto from '../assets/iyanna-blackburn-profile.jpg'
 import { DashboardCard } from '../components/DashboardCard'
 import { DashboardNotes } from '../components/DashboardNotes'
 import { SkillExplorer } from '../components/SkillExplorer'
 import { WorkExplorer } from '../components/WorkExplorer'
+import { profile } from '../data/profile'
 
 export function HomeSection() {
   return (
@@ -35,19 +37,12 @@ export function HomeSection() {
 
       <DashboardCard id="about" className="profile-card" labelledBy="profile-name">
         <div className="profile-photo">
-          <span className="profile-photo__frame" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-            <span />
-          </span>
-          <span className="profile-photo__label">PORTRAIT<br />SPACE RESERVED</span>
-          <span className="profile-photo__monogram" aria-hidden="true">IB</span>
+          <img src={profilePhoto} alt="Iyanna Blackburn" width={1146} height={926} decoding="async" />
         </div>
         <div className="profile-card__content">
-          <p className="card-kicker">The person behind the work</p>
-          <h2 id="profile-name">Iyanna Blackburn</h2>
-          <p>Data analytics · AI · Development · Creative direction</p>
+          <p className="card-kicker">{profile.kicker}</p>
+          <h2 id="profile-name">{profile.name}</h2>
+          <p>{profile.about}</p>
           <a className="text-link" href="#skills">Explore focus <span aria-hidden="true">↗</span></a>
         </div>
       </DashboardCard>

@@ -19,7 +19,8 @@
 
 html {
   min-width: 20rem;
-  scroll-padding-top: var(--space-6);
+  /* Clears the sticky header (about 5.5rem) when jumping to a section. */
+  scroll-padding-top: 7rem;
 }
 
 body {

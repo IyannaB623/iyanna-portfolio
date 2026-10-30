@@ -47,7 +47,7 @@
   line-height: 2.55rem;
 }
 
-.site-brand__monogram span { color: var(--color-garden-deep); }
+.site-brand__monogram span { color: var(--color-link); }
 
 .site-brand__monogram i {
   position: absolute;
@@ -83,7 +83,7 @@
 }
 
 .site-nav a:hover,
-.site-nav a:focus-visible { color: var(--color-garden-deep); }
+.site-nav a:focus-visible { color: var(--color-link); }
 .site-nav a:active { transform: translateY(1px); }
 
 .site-nav .site-nav__contact {
@@ -116,7 +116,7 @@
 }
 
 .theme-toggle:hover,
-.menu-toggle:hover { border-color: var(--color-garden-deep); color: var(--color-garden-deep); }
+.menu-toggle:hover { border-color: var(--color-garden-deep); color: var(--color-link); }
 .theme-toggle svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.6; }
 .menu-toggle { display: none; }
 .menu-toggle span { width: 1.1rem; height: 1px; background: currentColor; transition: transform 160ms ease; }
