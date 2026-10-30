@@ -18,7 +18,7 @@ export function HomeSection() {
         </div>
         <div className="identity-card__content">
           <p className="identity-card__eyebrow">DATA ANALYST <i /> DEVELOPER <i /> CREATIVE</p>
-          <h1 id="identity-title">Where data<br />meets creativity.</h1>
+          <h1 id="identity-title">Where data{' '}<br />meets creativity.</h1>
           <p className="identity-card__supporting">
             I turn complex information into clear, compelling digital experiences
             through analytics, AI, and thoughtful design.

@@ -28,7 +28,8 @@
 .profile-card h2, .dashboard-card__header h2 { margin: 0; color: var(--color-ink); font-size: clamp(1.3rem, 2vw, 1.7rem); font-weight: 750; letter-spacing: -0.05em; }
 .card-index { padding: 0.5rem 0.7rem; border: 1px solid var(--color-border-strong); border-radius: 999px; color: var(--color-link); font-size: 0.68rem; font-weight: 750; letter-spacing: 0.07em; }
 
-.text-link { display: inline-flex; gap: 0.5rem; margin-top: 1rem; color: var(--color-link); font-size: 0.86rem; font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
+/* Block padding gives a 24px+ target (WCAG 2.5.8); margin is reduced to match. */
+.text-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.6rem; padding-block: 0.4rem; color: var(--color-link); font-size: 0.86rem; font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
 .text-link:hover { color: var(--color-accent-hover); }
 
 .dashboard-button {

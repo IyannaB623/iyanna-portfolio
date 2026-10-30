@@ -48,9 +48,17 @@ npm run lint
 
 - `src/components/` — reusable interface components
 - `src/sections/` — page sections
-- `src/data/` — navigation and section content
+- `src/data/` — editable content: projects, skills, profile, contact, and
+  navigation
+- `src/types/` — TypeScript types for the content data
 - `src/styles/` — design tokens (`tokens.css`) and shared styling
+- `src/assets/` — imported images, such as the profile photo
 - `public/` — static files served as-is, such as the favicon
 
-Some project and section copy is still draft or placeholder text; replace it
-with approved portfolio details as they become available.
+To add a project, append one object to `src/data/projects.ts`; optional fields
+that are left out are not rendered. Skills, contact links, and the résumé URL
+are updated the same way in their data files.
+
+Some copy is still draft or placeholder text, such as the “Now Building” and
+“Creative Signal” notes; replace it with approved details as they become
+available.
