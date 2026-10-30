@@ -1,10 +1,42 @@
-import { useState } from 'react'
-import { projects } from '../data/dashboard'
+import { useRef, useState, type KeyboardEvent } from 'react'
+import { projects } from '../data/projects'
 import { DashboardCard } from './DashboardCard'
+import { ProjectDetail } from './ProjectDetail'
+
+const panelId = 'work-panel'
+const defaultProjectId = (projects.find((project) => project.featured) ?? projects[0]).id
+
+const formatPosition = (position: number) => String(position).padStart(2, '0')
+const getTabId = (projectId: string) => `work-tab-${projectId}`
 
 export function WorkExplorer() {
-  const [selectedProjectId, setSelectedProjectId] = useState<(typeof projects)[number]['id']>(projects[0].id)
-  const selectedProject = projects.find((project) => project.id === selectedProjectId) ?? projects[0]
+  const [selectedProjectId, setSelectedProjectId] = useState(defaultProjectId)
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const selectedIndex = Math.max(0, projects.findIndex((project) => project.id === selectedProjectId))
+  const selectedProject = projects[selectedIndex]
+
+  const selectAndFocus = (index: number) => {
+    const nextIndex = (index + projects.length) % projects.length
+    setSelectedProjectId(projects[nextIndex].id)
+    tabRefs.current[nextIndex]?.focus()
+  }
+
+  // Tabs pattern: arrow keys move between projects (and wrap), Home/End jump.
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    const nextIndexByKey: Record<string, number> = {
+      ArrowRight: selectedIndex + 1,
+      ArrowDown: selectedIndex + 1,
+      ArrowLeft: selectedIndex - 1,
+      ArrowUp: selectedIndex - 1,
+      Home: 0,
+      End: projects.length - 1,
+    }
+    const nextIndex = nextIndexByKey[event.key]
+    if (nextIndex === undefined) return
+
+    event.preventDefault()
+    selectAndFocus(nextIndex)
+  }
 
   return (
     <DashboardCard
@@ -13,38 +45,34 @@ export function WorkExplorer() {
       kicker="A few directions"
       title="Selected work"
       titleId="work-title"
-      index="01 / 03"
+      index={`${formatPosition(selectedIndex + 1)} / ${formatPosition(projects.length)}`}
     >
       <div className="work-explorer">
-        <div className="work-selector" role="group" aria-label="Select a project">
-          {projects.map((project, index) => (
-            <button
-              key={project.id}
-              className="work-selector__item"
-              type="button"
-              aria-pressed={selectedProject.id === project.id}
-              onClick={() => setSelectedProjectId(project.id)}
-            >
-              <span className="work-selector__number">0{index + 1}</span>
-              <span>{project.label}</span>
-              <span className="work-selector__arrow" aria-hidden="true">↗</span>
-            </button>
-          ))}
+        <div className="work-selector" role="tablist" aria-label="Projects" onKeyDown={handleKeyDown}>
+          {projects.map((project, index) => {
+            const isSelected = index === selectedIndex
+
+            return (
+              <button
+                key={project.id}
+                ref={(element) => { tabRefs.current[index] = element }}
+                id={getTabId(project.id)}
+                className="work-selector__item"
+                type="button"
+                role="tab"
+                aria-selected={isSelected}
+                aria-controls={panelId}
+                tabIndex={isSelected ? 0 : -1}
+                onClick={() => setSelectedProjectId(project.id)}
+              >
+                <span className="work-selector__number" aria-hidden="true">{formatPosition(index + 1)}</span>
+                <span>{project.title}</span>
+                <span className="work-selector__arrow" aria-hidden="true">↗</span>
+              </button>
+            )
+          })}
         </div>
-        <article className="work-detail" aria-live="polite" aria-atomic="true">
-          <div className="work-detail__art" aria-hidden="true">
-            <span className="work-detail__orbit work-detail__orbit--one" />
-            <span className="work-detail__orbit work-detail__orbit--two" />
-            <span className="work-detail__seed" />
-            <span className="work-detail__stem" />
-            <span className="work-detail__leaf work-detail__leaf--one" />
-            <span className="work-detail__leaf work-detail__leaf--two" />
-          </div>
-          <p className="card-kicker">Selected project</p>
-          <h3>{selectedProject.label}</h3>
-          <p>{selectedProject.description}</p>
-          <span className="work-detail__note">Details to come</span>
-        </article>
+        <ProjectDetail project={selectedProject} id={panelId} labelledBy={getTabId(selectedProject.id)} />
       </div>
     </DashboardCard>
   )

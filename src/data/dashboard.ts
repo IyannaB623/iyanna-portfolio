@@ -1,21 +1,3 @@
-export const projects = [
-  {
-    id: 'career-agent',
-    label: 'Career Intelligence Agent',
-    description: 'Project details, approach, and outcomes will be added here.',
-  },
-  {
-    id: 'analytics-projects',
-    label: 'Analytics Projects',
-    description: 'Project details, approach, and outcomes will be added here.',
-  },
-  {
-    id: 'creative-practice',
-    label: 'Creative Practice',
-    description: 'Project details, approach, and outcomes will be added here.',
-  },
-] as const
-
 export const skillAreas = [
   {
     id: 'sql',
