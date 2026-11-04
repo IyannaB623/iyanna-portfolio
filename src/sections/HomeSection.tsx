@@ -1,44 +1,55 @@
-import { DataConstellation } from '../components/DataConstellation'
-import { CursorDataLens } from '../components/CursorDataLens'
-import { ExpertiseMarquee } from '../components/ExpertiseMarquee'
-import { HeroAmbientBackground } from '../components/HeroAmbientBackground'
+import profilePhoto from '../assets/iyanna-blackburn-profile.jpg'
+import { DashboardCard } from '../components/DashboardCard'
+import { DashboardNotes } from '../components/DashboardNotes'
+import { SkillExplorer } from '../components/SkillExplorer'
+import { WorkExplorer } from '../components/WorkExplorer'
+import { profile } from '../data/profile'
 
 export function HomeSection() {
   return (
-    <>
-      <section id="home" className="hero-section" aria-labelledby="hero-name">
-        <HeroAmbientBackground />
-        <CursorDataLens />
-        <div className="hero-section__copy">
-          <p className="eyebrow">DATA ANALYST <i /> DEVELOPER <i /> CREATIVE</p>
-          <h1 id="hero-name">Iyanna Blackburn</h1>
-          <p className="hero-section__statement">
-            Where data meets <span>creativity.</span>
-          </p>
-          <p className="hero-section__note">
+    <div id="dashboard" className="dashboard-grid">
+      <DashboardCard id="identity" className="identity-card" variant="hero" labelledBy="identity-title">
+        <div className="identity-card__art" aria-hidden="true">
+          <span className="identity-shape identity-shape--garden" />
+          <span className="identity-shape identity-shape--blush" />
+          <span className="identity-card__ring identity-card__ring--one" />
+          <span className="identity-card__ring identity-card__ring--two" />
+          <span className="identity-card__seed" />
+        </div>
+        <div className="identity-card__content">
+          <p className="identity-card__eyebrow">DATA ANALYST <i /> DEVELOPER <i /> CREATIVE</p>
+          <h1 id="identity-title">Where data{' '}<br />meets creativity.</h1>
+          <p className="identity-card__supporting">
             I turn complex information into clear, compelling digital experiences
             through analytics, AI, and thoughtful design.
           </p>
-          <div className="hero-actions">
-            <a className="button button--primary" href="#selected-work">
-              View Selected Work <span aria-hidden="true">↗</span>
+          <div className="identity-card__actions">
+            <a className="dashboard-button dashboard-button--primary" href="#work">
+              Explore Work <span aria-hidden="true">↗</span>
             </a>
-            <a className="button button--secondary" href="#contact">
-              Let’s Connect <span aria-hidden="true">↗</span>
+            <a className="dashboard-button dashboard-button--quiet" href="#skills">
+              Quick Tour <span aria-hidden="true">↓</span>
             </a>
           </div>
-          <p className="hero-status">
-            <span className="hero-status__marker" aria-hidden="true" />
-            <span>Portfolio in progress</span>
-            <span className="hero-status__divider" aria-hidden="true" />
-            <span>Thoughtfully taking shape</span>
-          </p>
         </div>
-        <div className="hero-section__visual">
-          <DataConstellation />
+        <span className="identity-card__index" aria-hidden="true">IB · 01</span>
+      </DashboardCard>
+
+      <DashboardCard id="about" className="profile-card" labelledBy="profile-name">
+        <div className="profile-photo">
+          <img src={profilePhoto} alt="Iyanna Blackburn" width={1146} height={926} decoding="async" />
         </div>
-      </section>
-      <ExpertiseMarquee />
-    </>
+        <div className="profile-card__content">
+          <p className="card-kicker">{profile.kicker}</p>
+          <h2 id="profile-name">{profile.name}</h2>
+          <p>{profile.about}</p>
+          <a className="text-link" href="#skills">Explore focus <span aria-hidden="true">↗</span></a>
+        </div>
+      </DashboardCard>
+
+      <WorkExplorer />
+      <SkillExplorer />
+      <DashboardNotes />
+    </div>
   )
 }

@@ -19,15 +19,35 @@
 
 html {
   min-width: 20rem;
-  scroll-padding-top: var(--space-6);
+  /* Clears the sticky header (about 5.5rem) when jumping to a section. */
+  scroll-padding-top: 7rem;
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   min-width: 20rem;
   min-height: 100vh;
   margin: 0;
   color: var(--color-ink);
   background: var(--color-background);
+  background-image: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-wash) 100%);
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  inset: -18%;
+  background:
+    radial-gradient(ellipse at 19% 23%, var(--color-atmosphere-garden), transparent 44%),
+    radial-gradient(ellipse at 78% 68%, var(--color-atmosphere-blush), transparent 39%);
+  content: '';
+  pointer-events: none;
+  animation: atmosphere-drift 42s ease-in-out infinite alternate;
+}
+
+@keyframes atmosphere-drift {
+  to { transform: translate3d(1.3%, -1%, 0) scale(1.035); }
 }
 
 button,
@@ -39,12 +59,49 @@ a {
   color: inherit;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 4px;
 }
 
 ::selection {
   color: var(--color-accent-contrast);
-  background: var(--color-accent);
+  background: var(--color-garden-light);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 50;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: 0.6rem;
+  color: var(--color-card-text);
+  background: var(--color-botanical-charcoal);
+  transform: translateY(-160%);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  body::before { animation: none; }
 }

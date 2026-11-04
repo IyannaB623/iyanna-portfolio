@@ -14,7 +14,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.dataset.theme = theme
     document.querySelector('meta[name="theme-color"]')?.setAttribute(
       'content',
-      theme === 'dark' ? '#241b16' : '#a49587',
+      theme === 'dark' ? '#17201d' : '#e7ecdf',
     )
 
     try {
